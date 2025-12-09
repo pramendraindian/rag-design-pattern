@@ -86,3 +86,5 @@ def getModel(ip_inputTokens):
 def getTokenizer(prompt):
     return tokenizer(prompt, return_tensors="pt").to(device) # Tokenize and move to device
     #return tokenizer
+def decodeOutput(ip_outputs):
+    return tokenizer.decode(ip_outputs[0], skip_special_tokens=True) # Tokenize and move to device
