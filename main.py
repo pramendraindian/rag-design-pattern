@@ -57,7 +57,7 @@ print(f"\nEnhanced LLM Prompt:\n{llm_prompt}\n")
 # 5. Generate a response using the LLM (model1) with the enhanced prompt
 
 #with torch.no_grad():
-inputs = tokenizer(llm_prompt, return_tensors="pt").to(model) # Tokenize and move to device
+inputs = tokenizer(llm_prompt, return_tensors="pt").to(device) # Tokenize and move to device
 print (inputs)
 outputs = model.generate(
     **inputs,
