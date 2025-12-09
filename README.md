@@ -30,3 +30,4 @@ Beyond the basic RAG workflow, several advanced patterns exist for more complex 
 
 **Corrective RAG (CRAG)**: Includes a self-reflection mechanism that evaluates the quality of retrieved documents and performs additional searches if the initial information is insufficient or irrelevant. 
 
+<img width="784" height="442" alt="image" src="https://github.com/user-attachments/assets/e5c3f9b7-9cf1-4f1c-93d3-3be1d37783b6" />
