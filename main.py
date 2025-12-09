@@ -72,3 +72,9 @@ decoded_output = tokenizer.decode(outputs[0], skip_special_tokens=True)
 
 print("\nLLM Generated Response:")
 print(decoded_output)
+
+def getModel():
+    return model
+
+def getTokenizer():
+    return tokenizer
