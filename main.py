@@ -25,14 +25,15 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 # Check if tokenizer and model are already defined to avoid re-loading
 # This block is moved here to ensure embed_text is defined before use
 # Ideally, cell RyXoBpd6dUum should be executed first.
-if 'tokenizer1' not in globals() or 'model1' not in globals():
-  print("Loading Gemma model (moved from RyXoBpd6dUum)...")
+
+print("Loading Gemma model")
 
 # 2. Load the model and tokenizer
-  model1 = AutoModelForCausalLM.from_pretrained(MODEL_NAME,cache_dir="E:/ExtendedPrograms/CachedLibs",device_map="auto")
-  tokenizer1 = AutoTokenizer.from_pretrained(MODEL_NAME)
+  #model1 = AutoModelForCausalLM.from_pretrained(MODEL_NAME,cache_dir="E:/ExtendedPrograms/CachedLibs",device_map="auto")
+model = AutoModelForCausalLM.from_pretrained(MODEL_NAME).to(device)
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 
-print("Loaded Gemma model (moved from RyXoBpd6dUum)...")
+print("Loaded Gemma model")
 
 
 context = ['Huggin face is provides an interface to connect with llm']
@@ -55,19 +56,19 @@ print(f"\nEnhanced LLM Prompt:\n{llm_prompt}\n")
 
 # 5. Generate a response using the LLM (model1) with the enhanced prompt
 
-with torch.no_grad():
-    inputs = tokenizer1(llm_prompt, return_tensors="pt").to(model1.device) # Tokenize and move to device
-    print (inputs)
-    outputs = model1.generate(
+#with torch.no_grad():
+inputs = tokenizer(llm_prompt, return_tensors="pt").to(model) # Tokenize and move to device
+print (inputs)
+outputs = model.generate(
     **inputs,
     max_new_tokens=50, # Increased max_new_tokens for potentially longer answers
     do_sample=True,
     num_beams=1,
-    pad_token_id=tokenizer1.eos_token_id
+    pad_token_id=tokenizer.eos_token_id
 )
 
 
-decoded_output = tokenizer1.decode(outputs[0], skip_special_tokens=True)
+decoded_output = tokenizer.decode(outputs[0], skip_special_tokens=True)
 
 print("\nLLM Generated Response:")
 print(decoded_output)
