@@ -1,6 +1,7 @@
 # RAG Design Pattern
 **The Retrieval-Augmented Generation (RAG)** design pattern is an artificial intelligence (AI) framework that enhances large language models (LLMs) by giving them access to external, up-to-date, and domain-specific information before generating a response. This process helps mitigate common LLM issues like generating false information (hallucinations), providing outdated knowledge, or lacking expertise on proprietary data. 
-------------------------------------------------------
+
+-------
 The RAG pattern operates in two main stages: 
 The RAG Workflow
 Retrieval: When a user submits a query, the RAG system first converts the query into a numerical representation (a vector embedding). This embedding is used to search a specialized knowledge base (typically a vector database containing vectorized documents, PDFs, or other data) to find the most relevant document snippets or passages.
