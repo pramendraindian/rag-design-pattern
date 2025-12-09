@@ -17,7 +17,7 @@ The RAG pattern operates in two main stages:
 **Cost-Effectiveness**: RAG is a more efficient and scalable way to adapt LLMs to new information compared to fine-tuning or training models from scratch. 
 
 Common Design Patterns
-
+------
 Beyond the basic RAG workflow, several advanced patterns exist for more complex use cases: 
 
 **Simple RAG**: The foundational, linear process of retrieve-then-generate, suitable for basic question-answering systems.
@@ -26,5 +26,7 @@ Beyond the basic RAG workflow, several advanced patterns exist for more complex 
 
 **Multi-hop RAG**: For complex questions requiring deep reasoning, this pattern performs multiple, chained retrieval steps, where the output of one search informs the next.
 
-Agentic RAG: The most sophisticated pattern, where an autonomous AI agent dynamically decides which tools or data sources to use, breaks down complex tasks into sub-queries, and orchestrates the information gathering process.
-Corrective RAG (CRAG): Includes a self-reflection mechanism that evaluates the quality of retrieved documents and performs additional searches if the initial information is insufficient or irrelevant. 
+**Agentic RAG**: The most sophisticated pattern, where an autonomous AI agent dynamically decides which tools or data sources to use, breaks down complex tasks into sub-queries, and orchestrates the information gathering process.
+
+**Corrective RAG (CRAG)**: Includes a self-reflection mechanism that evaluates the quality of retrieved documents and performs additional searches if the initial information is insufficient or irrelevant. 
+
