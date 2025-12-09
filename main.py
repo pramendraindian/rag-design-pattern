@@ -1,0 +1,73 @@
+import os
+from dotenv import load_dotenv
+from huggingface_hub import login
+import torch
+# Load environment variables from .env file
+load_dotenv() 
+
+# Access variables using os.getenv() or os.environ[]
+MODEL_NAME = os.getenv("MODEL_NAME")
+secret_key = os.getenv("HF_TOKEN")
+
+
+# Use the variables in your application
+print(f"Model Name: {MODEL_NAME}")
+print(f"Secret Key: {secret_key}") 
+
+#Login to Huggin face
+login(token=secret_key)
+
+import torch
+from transformers import AutoTokenizer, AutoModelForCausalLM
+device = "cuda" if torch.cuda.is_available() else "cpu"
+
+
+# Check if tokenizer and model are already defined to avoid re-loading
+# This block is moved here to ensure embed_text is defined before use
+# Ideally, cell RyXoBpd6dUum should be executed first.
+if 'tokenizer1' not in globals() or 'model1' not in globals():
+  print("Loading Gemma model (moved from RyXoBpd6dUum)...")
+
+# 2. Load the model and tokenizer
+  model1 = AutoModelForCausalLM.from_pretrained(MODEL_NAME,cache_dir="E:/ExtendedPrograms/CachedLibs",device_map="auto")
+  tokenizer1 = AutoTokenizer.from_pretrained(MODEL_NAME)
+
+print("Loaded Gemma model (moved from RyXoBpd6dUum)...")
+
+
+context = ['Huggin face is provides an interface to connect with llm']
+user_query='What is Hugging Face in ai development?'
+
+# 3. Prepare the input
+# 4. Construct an enhanced prompt for the LLM
+# Combine the user query with the retrieved context
+llm_prompt = f"""
+Based on the following information, answer the question:
+
+---
+Context:
+{"\n".join(context)}
+---
+Question: {user_query}
+Answer:"""
+
+print(f"\nEnhanced LLM Prompt:\n{llm_prompt}\n")
+
+# 5. Generate a response using the LLM (model1) with the enhanced prompt
+
+with torch.no_grad():
+    inputs = tokenizer1(llm_prompt, return_tensors="pt").to(model1.device) # Tokenize and move to device
+    print (inputs)
+    outputs = model1.generate(
+    **inputs,
+    max_new_tokens=50, # Increased max_new_tokens for potentially longer answers
+    do_sample=True,
+    num_beams=1,
+    pad_token_id=tokenizer1.eos_token_id
+)
+
+
+decoded_output = tokenizer1.decode(outputs[0], skip_special_tokens=True)
+
+print("\nLLM Generated Response:")
+print(decoded_output)

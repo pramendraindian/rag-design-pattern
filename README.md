@@ -1,3 +1,16 @@
+# Setup Local Environment
+
+python -m venv venv
+
+venv\Scripts\activate
+
+
+set HF_HOME="E:\ExtendedPrograms\CachedLibs"
+model1 = AutoModelForCausalLM.from_pretrained(MODEL_NAME,cache_dir="E:\ExtendedPrograms\CachedLibs").to(device)
+  
+
+------
+
 # RAG Design Pattern
 **The Retrieval-Augmented Generation (RAG)** design pattern is an artificial intelligence (AI) framework that enhances large language models (LLMs) by giving them access to external, up-to-date, and domain-specific information before generating a response. This process helps mitigate common LLM issues like generating false information (hallucinations), providing outdated knowledge, or lacking expertise on proprietary data. 
 
