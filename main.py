@@ -73,15 +73,15 @@ decoded_output = tokenizer.decode(outputs[0], skip_special_tokens=True)
 print("\nLLM Generated Response:")
 print(decoded_output)
 
-def getModel(ip_inputTokens):
-    model.generate(
+def getModelOutput(ip_inputTokens):
+    output=model.generate(
     **ip_inputTokens,
     max_new_tokens=50, # Increased max_new_tokens for potentially longer answers
     do_sample=True,
     num_beams=1,
     pad_token_id=tokenizer.eos_token_id
     )
-    return model
+    return output
 
 def getTokenizer(prompt):
     return tokenizer(prompt, return_tensors="pt").to(device) # Tokenize and move to device
