@@ -88,3 +88,13 @@ def getTokenizer(prompt):
     #return tokenizer
 def decodeOutput(ip_outputs):
     return tokenizer.decode(ip_outputs[0], skip_special_tokens=True) # Tokenize and move to device
+
+def evaluate(prompt):
+    print("User Prompt",prompt)
+    ips=getTokenizer(prompt=prompt)
+    print("input token",ips)
+    ops=getModelOutput(ips)
+    print("raw outputs",ops)
+    dops=decodeOutput(ips)
+    print("decoded outputs",dops)
+    return dops
