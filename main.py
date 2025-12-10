@@ -73,7 +73,8 @@ decoded_output = tokenizer.decode(outputs[0], skip_special_tokens=True)
 print("\nLLM Generated Response:")
 print(decoded_output)
 
-def getModelOutput(ip_inputTokens):
+#Private functions
+def _getModelOutput(ip_inputTokens):
     output=model.generate(
     **ip_inputTokens,
     max_new_tokens=50, # Increased max_new_tokens for potentially longer answers
@@ -83,18 +84,19 @@ def getModelOutput(ip_inputTokens):
     )
     return output
 
-def getTokenizer(prompt):
+def _getTokenizer(prompt):
     return tokenizer(prompt, return_tensors="pt").to(device) # Tokenize and move to device
     #return tokenizer
-def decodeOutput(ip_outputs):
+def _decodeOutput(ip_outputs):
     return tokenizer.decode(ip_outputs[0], skip_special_tokens=True) # Tokenize and move to device
 
-def evaluate(prompt):
+#public functions
+def generateContent(prompt):
     print("User Prompt",prompt)
-    ips=getTokenizer(prompt=prompt)
-    print("input token",ips)
-    ops=getModelOutput(ips)
-    print("raw outputs",ops)
-    dops=decodeOutput(ips)
-    print("decoded outputs",dops)
-    return dops
+    ipTokens=_getTokenizer(prompt=prompt)
+    print("input token",ipTokens)
+    opTokens=_getModelOutput(ipTokens)
+    print("raw outputs",opTokens)
+    generatedContent=_decodeOutput(opTokens)
+    print("decoded outputs",generatedContent)
+    return generatedContent
