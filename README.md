@@ -22,6 +22,8 @@ The RAG pattern operates in two main stages:
 
 **Augmentation & Generation**: The retrieved, relevant information is then added to the user's original prompt as additional context. This augmented prompt is sent to the LLM, which uses both its inherent training data and the new, specific context to generate a grounded, accurate, and relevant answer. 
 
+![RAG Architecture](RAG - Architecture.png)
+
 **Key Benefits**
 
 **Improved Accuracy and Trust**: By grounding responses in specific, verifiable sources, RAG significantly reduces the risk of the model "hallucinating" or presenting incorrect facts.
