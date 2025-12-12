@@ -12,7 +12,7 @@ secret_key = os.getenv("HF_TOKEN")
 
 # Use the variables in your application
 print(f"Model Name: {MODEL_NAME}")
-print(f"Secret Key: {secret_key}") 
+#print(f"Secret Key: {secret_key}") 
 
 #Login to Huggin face
 login(token=secret_key)
